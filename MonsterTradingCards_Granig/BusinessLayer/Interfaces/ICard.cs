@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace MonsterTradingCards_Granig
 {
-    public enum ElementType { Fire, Water, Normal };
     internal interface ICard
     {
         public string Name {  get; }

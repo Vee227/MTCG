@@ -1,0 +1,15 @@
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.exe
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.deps.json
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.runtimeconfig.json
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.dll
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.pdb
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.AssemblyInfoInputs.cache
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.AssemblyInfo.cs
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.csproj.CoreCompileInputs.cache
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.sourcelink.json
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.dll
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\refint\MonsterTradingCards_Granig.dll
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.pdb
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.genruntimeconfig.cache
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\ref\MonsterTradingCards_Granig.dll
