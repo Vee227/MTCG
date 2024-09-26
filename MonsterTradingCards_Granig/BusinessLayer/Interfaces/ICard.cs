@@ -12,6 +12,7 @@ namespace MonsterTradingCards_Granig
     {
         public string Name {  get; }
         public int Damage { get; }
+        public ElementType Element { get; } //noch hinzugefügt
 
 
         int Attack(ElementType elementType, int Damage);
