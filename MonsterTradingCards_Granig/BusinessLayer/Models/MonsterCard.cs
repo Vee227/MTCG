@@ -8,9 +8,9 @@ namespace MonsterTradingCards_Granig
 {
     internal class MonsterCard : ICard
     {
-        public string Name {  get; private set; }
+        public string Name { get; private set; }
         public int Damage { get; private set; }
-        public ElementType Element { get; private set; } 
+        public ElementType Element { get; private set; }
 
         public MonsterCard(string name, int damage, ElementType element)
         {
@@ -19,22 +19,24 @@ namespace MonsterTradingCards_Granig
             Element = element;
         }
 
-        public int Attack(ElementType opponentElement, int opponentDamage) //hab ich weiter ausgebaut
+        public int Attack(ElementType opponentElement, int opponentDamage)
         {
-            if(this.Element == ElementType.Fire)
+            if (this.Element == ElementType.Fire)
             {
-                return Damage + 100; 
+                return Damage + 100;
             }
-            else if(this.Element == ElementType.Water)
+            else if (this.Element == ElementType.Water)
             {
                 return Damage + 70;
             }
-            else if(this.Element == ElementType.Normal) {
+            else if (this.Element == ElementType.Normal)
+            {
                 return Damage + 20;
             }
 
             return Damage;
 
 
+        }
     }
 }

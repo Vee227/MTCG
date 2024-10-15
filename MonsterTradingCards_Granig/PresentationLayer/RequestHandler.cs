@@ -9,9 +9,7 @@ namespace MonsterTradingCards_Granig.PresentationLayer
     public class RequestHandler()
     {
         private readonly List<User> users = new();
-        /*{
-            new User { Username = "testuser", Password = "password123", Token = null }
-        };*/
+        
         public string HandleRequest(string request, string httpMethod, string? requestBody)
         {
             {
