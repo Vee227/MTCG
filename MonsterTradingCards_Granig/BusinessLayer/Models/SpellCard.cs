@@ -20,7 +20,7 @@ namespace MonsterTradingCards_Granig
             Element = element;
         }
 
-        public int Attack(ElementType opponentElement, int opponentDamage) //ebenfalls überarbeitet
+        public int Attack(ElementType opponentElement, int opponentDamage)
         {
             if (opponentElement == ElementType.Fire && this.Element == ElementType.Water)
             {
