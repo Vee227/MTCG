@@ -10,17 +10,31 @@ namespace MonsterTradingCards_Granig
     {
         public string Name {  get; private set; }
         public int Damage { get; private set; }
+        public ElementType Element { get; private set; } 
 
-        public MonsterCard(string name, int damage)
+        public MonsterCard(string name, int damage, ElementType element)
         {
             Name = name;
             Damage = damage;
+            Element = element;
         }
 
-        public int Attack(ElementType elementType, int damage)
+        public int Attack(ElementType opponentElement, int opponentDamage) //hab ich weiter ausgebaut
         {
-            return damage;
-        }
+            if(this.Element == ElementType.Fire)
+            {
+                return Damage + 100; 
+            }
+            else if(this.Element == ElementType.Water)
+            {
+                return Damage + 70;
+            }
+            else if(this.Element == ElementType.Normal) {
+                return Damage + 20;
+            }
+
+            return Damage;
+
 
     }
 }

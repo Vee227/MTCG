@@ -11,15 +11,27 @@ namespace MonsterTradingCards_Granig
         public string Name { get; private set; }
         public int Damage { get; private set; }
 
-        public SpellCard(string name, int damage)
+        public ElementType Element{ get; private set; } 
+
+        public SpellCard(string name, int damage, ElementType element)
         {
             Name = name;
             Damage = damage;
+            Element = element;
         }
 
-        public int Attack(ElementType elementType, int damage)
+        public int Attack(ElementType opponentElement, int opponentDamage) //ebenfalls überarbeitet
         {
-            return damage;
+            if (opponentElement == ElementType.Fire && this.Element == ElementType.Water)
+            {
+                return Damage * 2;
+            }
+            else if (opponentElement == ElementType.Water && this.Element == ElementType.Fire)
+            {
+                return Damage / 2;
+            }
+
+            return Damage;
         }
 
     }
