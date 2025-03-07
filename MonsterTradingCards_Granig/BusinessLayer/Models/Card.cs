@@ -62,16 +62,12 @@ namespace MonsterTradingCards_Granig.BusinessLayer.Models
             return cards;
         }
 
-        /// <summary>
-        /// Fügt eine neue Karte zur Datenbank hinzu
-        /// </summary>
         public static async Task<bool> AddCard(string name, int damage, string element, string cardType, string username)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
                 await conn.OpenAsync();
 
-                // Holt die User-ID
                 var userIdQuery = "SELECT id FROM users WHERE username = @username";
                 int ownerId;
 
@@ -83,14 +79,13 @@ namespace MonsterTradingCards_Granig.BusinessLayer.Models
                     ownerId = Convert.ToInt32(result);
                 }
 
-                // Karte in die Datenbank einfügen
                 var insertQuery = "INSERT INTO cards (name, damage, element_type, card_type, owner_id) VALUES (@name, @damage, @elementType, @cardType, @ownerId)";
 
                 using (var cmd = new NpgsqlCommand(insertQuery, conn))
                 {
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@damage", damage);
-                    cmd.Parameters.AddWithValue("@elementType", element); // ✅ Kein Enum mehr, direkt als String speichern
+                    cmd.Parameters.AddWithValue("@elementType", element);
                     cmd.Parameters.AddWithValue("@cardType", cardType);
                     cmd.Parameters.AddWithValue("@ownerId", ownerId);
 

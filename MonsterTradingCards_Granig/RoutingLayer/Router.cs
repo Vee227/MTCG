@@ -24,7 +24,7 @@ namespace MonsterTradingCards_Granig.RoutingLayer
 
             if (method == "POST" && path == "/users")
             {
-                return await RegisterUser(body); // ✅ Korrekte Methode aufrufen
+                return await RegisterUser(body);
             }
             else if (method == "POST" && path == "/sessions")
             {
@@ -42,9 +42,7 @@ namespace MonsterTradingCards_Granig.RoutingLayer
             return "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\n\r\nRoute not found";
         }
 
-        /// <summary>
-        /// ✅ **Registriert einen neuen Benutzer in der Datenbank**
-        /// </summary>
+        
         private async Task<string> RegisterUser(string body)
         {
             try
@@ -67,9 +65,6 @@ namespace MonsterTradingCards_Granig.RoutingLayer
             }
         }
 
-        /// <summary>
-        /// ✅ **Authentifiziert einen Nutzer und gibt den Token zurück**
-        /// </summary>
         private async Task<string> LoginUser(string body)
         {
             try
@@ -91,9 +86,7 @@ namespace MonsterTradingCards_Granig.RoutingLayer
                 return "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/json\r\n\r\n{\"message\": \"An error occurred\"}";
             }
         }
-        /// <summary>
-        /// ✅ **Holt alle Karten des Nutzers aus der Datenbank**
-        /// </summary>
+        
         private async Task<string> GetUserCards(Dictionary<string, string> headers)
         {
             if (!headers.ContainsKey("Authorization"))

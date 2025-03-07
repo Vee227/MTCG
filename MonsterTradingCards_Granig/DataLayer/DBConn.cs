@@ -15,12 +15,12 @@ namespace MonsterTradingCards_Granig.DataLayer
             try
             {
                 await connection.OpenAsync();
-                return connection; // Verbindung wird geöffnet zurückgegeben
+                return connection;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Fehler bei der DB-Verbindung: {ex.Message}");
-                throw; // Fehler weitergeben, damit er nicht untergeht
+                throw;
             }
         }
     }

@@ -13,18 +13,16 @@ namespace MonsterTradingCards_Granig.DataLayer
             await using var conn = new NpgsqlConnection(ConnectionString);
             await conn.OpenAsync();
 
-            // Prüfen, ob Benutzername bereits existiert
             await using var checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM users WHERE username = @username", conn);
             checkCmd.Parameters.AddWithValue("@username", username);
             var count = (long)await checkCmd.ExecuteScalarAsync();
 
             if (count > 0)
-                return false; // Benutzer existiert bereits
+                return false; 
 
-            // Benutzer registrieren
             await using var insertCmd = new NpgsqlCommand("INSERT INTO users (username, password) VALUES (@username, @password)", conn);
             insertCmd.Parameters.AddWithValue("@username", username);
-            insertCmd.Parameters.AddWithValue("@password", password); // In real apps: Password hashing!
+            insertCmd.Parameters.AddWithValue("@password", password); 
 
             await insertCmd.ExecuteNonQueryAsync();
             return true;
@@ -44,15 +42,15 @@ namespace MonsterTradingCards_Granig.DataLayer
                         if (await reader.ReadAsync())
                         {
                             string storedPassword = reader.GetString(0);
-                            if (storedPassword == password)  // ⚠️ Passwort-Hashing fehlt!
+                            if (storedPassword == password) 
                             {
-                                return $"{username}-mtcgToken"; // Token wird nicht gespeichert, sondern immer neu generiert
+                                return $"{username}-mtcgToken"; 
                             }
                         }
                     }
                 }
             }
-            return null; // Login fehlgeschlagen
+            return null; 
         }
 
     }

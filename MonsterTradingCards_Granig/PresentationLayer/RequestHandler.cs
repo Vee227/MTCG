@@ -41,7 +41,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             return "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Route not found\"}";
         }
 
-        // Methode zur Registrierung
         private string HandleRegister(string? jsonBody)
         {
             if (string.IsNullOrWhiteSpace(jsonBody))
@@ -64,7 +63,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             return "HTTP/1.1 201 Created\r\nContent-Type: application/json\r\n\r\n{\"message\": \"User registered successfully\"}";
         }
 
-        // Methode zum Login
         private string HandleLogin(string? jsonBody)
         {
             if (string.IsNullOrWhiteSpace(jsonBody))
@@ -84,7 +82,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             return $"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{{\"token\": \"{user.Token}\"}}";
         }
 
-        // Methode zum Abrufen von Karten eines Nutzers
         private async Task<string> GetUserCards(Dictionary<string, string> headers)
         {
             if (!headers.ContainsKey("Authorization"))
@@ -106,7 +103,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             return $"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{jsonResponse}";
         }
 
-        // Methode zum Hinzufügen einer Karte
         private async Task<string> AddCard(string? body, Dictionary<string, string> headers)
         {
             if (!headers.ContainsKey("Authorization"))
@@ -136,7 +132,7 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             bool success = await cardRepository.AddCard(
                 cardData["Name"].ToString(),
                 Convert.ToInt32(cardData["Damage"]),
-                Convert.ToInt32(cardData["ElementType"]),  // ✅ FIXED: Direkt als `int`
+                Convert.ToInt32(cardData["ElementType"]),
                 cardData["CardType"].ToString(),
                 username
             );
@@ -146,7 +142,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
                 : "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Failed to add card\"}";
         }
 
-        // Extrahiert den Nutzernamen aus dem Token
         private string ExtractUsernameFromToken(string token)
         {
             return token.EndsWith("-mtcgToken") ? token.Replace("-mtcgToken", "") : null;

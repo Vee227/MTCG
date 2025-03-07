@@ -14,18 +14,18 @@ namespace MonsterTradingCards_Granig.PresentationLayer
 
         public Server()
         {
-            _listener = new TcpListener(IPAddress.Any, 10001); // Server auf Port 10001 starten
+            _listener = new TcpListener(IPAddress.Any, 10001);
         }
 
         public void Start()
         {
             _listener.Start();
-            Console.WriteLine("✅ Server started, listening on port 10001...");
+            Console.WriteLine("Server started, listening on port 10001...");
 
             while (true)
             {
                 TcpClient client = _listener.AcceptTcpClient();
-                Task.Run(() => HandleClient(client)); // Startet neuen Thread für jeden Client
+                Task.Run(() => HandleClient(client));
             }
         }
 
@@ -39,9 +39,9 @@ namespace MonsterTradingCards_Granig.PresentationLayer
                     int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                     string request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-                    Console.WriteLine($"📩 Received Request: \n{request}");
+                    Console.WriteLine($"Received Request: \n{request}");
 
-                    // HTTP Request zerlegen
+
                     string[] lines = request.Split("\r\n");
                     if (lines.Length == 0)
                     {
@@ -49,7 +49,7 @@ namespace MonsterTradingCards_Granig.PresentationLayer
                         return;
                     }
 
-                    string firstLine = lines[0]; // z.B. "POST /users HTTP/1.1"
+                    string firstLine = lines[0]; 
                     string[] parts = firstLine.Split(' ');
 
                     if (parts.Length < 2)
@@ -58,41 +58,36 @@ namespace MonsterTradingCards_Granig.PresentationLayer
                         return;
                     }
 
-                    string method = parts[0]; // "POST"
-                    string path = parts[1].Trim(); // Entfernt Leerzeichen oder %0A
+                    string method = parts[0]; 
+                    string path = parts[1].Trim(); 
 
-                    // Header & Body extrahieren
+                  
                     Dictionary<string, string> headers = ExtractHeaders(lines);
                     string body = ExtractRequestBody(lines);
 
-                    // Anfrage an den Router weiterleiten
+                
                     Router router = new Router();
                     string response = await router.HandleRequest(method, path, body, headers);
 
-                    // Falls die Antwort leer ist, sendet der Server eine 500er-Fehlermeldung
                     if (string.IsNullOrEmpty(response))
                     {
-                        Console.WriteLine("⚠️ Fehler: Keine Antwort vom Router! Sende 500-Fehler.");
+                        Console.WriteLine("Fehler: Keine Antwort vom Router! Sende 500-Fehler.");
                         response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\n\r\nServer Error: No response generated";
                     }
 
-                    // Antwort an den Client senden
                     SendResponse(stream, response);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error handling client: {ex.Message}");
+                Console.WriteLine($"Error handling client: {ex.Message}");
             }
             finally
             {
-                client.Close(); // Verbindung nach der Verarbeitung schließen
+                client.Close();
             }
         }
 
-        /// <summary>
-        /// Extrahiert den JSON-Body aus einer HTTP-Anfrage.
-        /// </summary>
         private static string ExtractRequestBody(string[] requestLines)
         {
             int jsonStartIndex = Array.FindIndex(requestLines, line => line.StartsWith("{"));
@@ -103,9 +98,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             return "";
         }
 
-        /// <summary>
-        /// Extrahiert die Header aus einer HTTP-Anfrage.
-        /// </summary>
         private static Dictionary<string, string> ExtractHeaders(string[] requestLines)
         {
             Dictionary<string, string> headers = new();
@@ -120,9 +112,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             return headers;
         }
 
-        /// <summary>
-        /// Sendet die HTTP-Antwort zurück an den Client.
-        /// </summary>
         private static void SendResponse(NetworkStream stream, string response)
         {
             byte[] responseData = Encoding.UTF8.GetBytes(response);

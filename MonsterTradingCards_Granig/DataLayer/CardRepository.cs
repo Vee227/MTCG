@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Npgsql;
-using MonsterTradingCards_Granig.BusinessLayer.Models;  // ✅ Card Model einbinden
+using MonsterTradingCards_Granig.BusinessLayer.Models; 
 
 namespace MonsterTradingCards_Granig.DataLayer
 {
@@ -10,7 +10,6 @@ namespace MonsterTradingCards_Granig.DataLayer
     {
         private const string ConnectionString = "Host=localhost;Port=5432;Username=admin;Password=supersecure;Database=postgres";
 
-        // Holt alle Karten eines Nutzers
         public async Task<List<Card>> GetCardsByUser(string username)
         {
             List<Card> cards = new List<Card>();
@@ -33,12 +32,12 @@ namespace MonsterTradingCards_Granig.DataLayer
                         while (await reader.ReadAsync())
                         {
                             var card = new Card(
-                                reader.GetInt32(0), // ID
-                                reader.GetString(1), // Name
-                                reader.GetInt32(2), // Damage
-                                reader.GetString(3), // ElementType
-                                reader.GetString(4), // CardType
-                                reader.GetInt32(5)  // OwnerId (jetzt hinzugefügt!)
+                                reader.GetInt32(0), 
+                                reader.GetString(1), 
+                                reader.GetInt32(2), 
+                                reader.GetString(3), 
+                                reader.GetString(4), 
+                                reader.GetInt32(5)  
                             );
                             cards.Add(card);
                         }
@@ -49,14 +48,12 @@ namespace MonsterTradingCards_Granig.DataLayer
             return cards;
         }
 
-        // Fügt eine neue Karte hinzu
         public async Task<bool> AddCard(string name, int damage, int elementType, string cardType, string username)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
                 await conn.OpenAsync();
 
-                // Holt die User-ID
                 var userIdQuery = "SELECT id FROM users WHERE username = @username";
                 int ownerId;
 
@@ -68,7 +65,6 @@ namespace MonsterTradingCards_Granig.DataLayer
                     ownerId = Convert.ToInt32(result);
                 }
 
-                // Fügt die Karte zur Datenbank hinzu
                 var insertQuery = "INSERT INTO cards (name, damage, element_type, card_type, owner_id) VALUES (@name, @damage, @elementType, @cardType, @ownerId)";
 
                 using (var cmd = new NpgsqlCommand(insertQuery, conn))
