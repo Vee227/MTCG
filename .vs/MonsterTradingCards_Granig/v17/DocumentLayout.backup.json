@@ -72,7 +72,7 @@
               "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\RoutingLayer\\Router.cs",
               "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\RoutingLayer\\Router.cs",
               "RelativeToolTip": "MonsterTradingCards_Granig\\RoutingLayer\\Router.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-07T22:41:41.585Z",
               "EditorCaption": ""
@@ -87,8 +87,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:41:07.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:41:07.481Z"
             },
             {
               "$type": "Document",
@@ -100,8 +99,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\PresentationLayer\\RequestHandler.cs",
               "ViewState": "AgIAAJUAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:39:47.777Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:39:47.777Z"
             },
             {
               "$type": "Document",
@@ -113,8 +111,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\PresentationLayer\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:39:45.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:39:45.249Z"
             },
             {
               "$type": "Document",
@@ -126,8 +123,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:39:20.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:39:20.121Z"
             },
             {
               "$type": "Document",
@@ -139,8 +135,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\TradeRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:39:17.919Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:39:17.919Z"
             },
             {
               "$type": "Document",
@@ -152,8 +147,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\DeckRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:39:15.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:39:15.753Z"
             },
             {
               "$type": "Document",
@@ -165,8 +159,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\DBConn.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:39:05.19Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:39:05.19Z"
             },
             {
               "$type": "Document",
@@ -178,8 +171,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\CardRepository.cs",
               "ViewState": "AgIAAFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:38:43.741Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:38:43.741Z"
             },
             {
               "$type": "Document",
@@ -191,8 +183,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\User.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:38:37.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:38:37.993Z"
             },
             {
               "$type": "Document",
@@ -204,8 +195,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\Player.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:38:30.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:38:30.781Z"
             },
             {
               "$type": "Document",
@@ -217,8 +207,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\Package.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:38:27.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:38:27.869Z"
             },
             {
               "$type": "Document",
@@ -230,8 +219,7 @@
               "RelativeToolTip": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\Card.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T22:38:09.335Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T22:38:09.335Z"
             }
           ]
         }
