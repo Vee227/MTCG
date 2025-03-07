@@ -2,16 +2,31 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Npgsql;
-using MonsterTradingCards_Granig.BusinessLayer.Models;  // ✅ Card Model einbinden
 
-namespace MonsterTradingCards_Granig.DataLayer
+namespace MonsterTradingCards_Granig.BusinessLayer.Models
 {
-    public class CardRepository
+    public class Card
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Damage { get; set; }
+        public string Element { get; set; } 
+        public string CardType { get; set; }
+        public int OwnerId { get; set; }
+
         private const string ConnectionString = "Host=localhost;Port=5432;Username=admin;Password=supersecure;Database=postgres";
 
-        // Holt alle Karten eines Nutzers
-        public async Task<List<Card>> GetCardsByUser(string username)
+        public Card(int id, string name, int damage, string element, string cardType, int ownerId)
+        {
+            Id = id;
+            Name = name;
+            Damage = damage;
+            Element = element;
+            CardType = cardType;
+            OwnerId = ownerId;
+        }
+
+        public static async Task<List<Card>> GetCardsByUser(string username)
         {
             List<Card> cards = new List<Card>();
 
@@ -20,7 +35,7 @@ namespace MonsterTradingCards_Granig.DataLayer
                 await conn.OpenAsync();
 
                 var query = @"
-                    SELECT c.id, c.name, c.damage, c.element_type, c.card_type 
+                    SELECT c.id, c.name, c.damage, c.element_type, c.card_type, c.owner_id
                     FROM cards c 
                     JOIN users u ON c.owner_id = u.id 
                     WHERE u.username = @username";
@@ -32,25 +47,25 @@ namespace MonsterTradingCards_Granig.DataLayer
                     {
                         while (await reader.ReadAsync())
                         {
-                            var card = new Card(
-                                reader.GetInt32(0), // ID
-                                reader.GetString(1), // Name
-                                reader.GetInt32(2), // Damage
-                                reader.GetString(3), // ElementType
-                                reader.GetString(4), // CardType
-                                reader.GetInt32(5)  // OwnerId (jetzt hinzugefügt!)
-                            );
-                            cards.Add(card);
+                            cards.Add(new Card(
+                                reader.GetInt32(0),  
+                                reader.GetString(1), 
+                                reader.GetInt32(2),  
+                                reader.GetString(3), 
+                                reader.GetString(4), 
+                                reader.GetInt32(5)   
+                            ));
                         }
-
                     }
                 }
             }
             return cards;
         }
 
-        // Fügt eine neue Karte hinzu
-        public async Task<bool> AddCard(string name, int damage, int elementType, string cardType, string username)
+        /// <summary>
+        /// Fügt eine neue Karte zur Datenbank hinzu
+        /// </summary>
+        public static async Task<bool> AddCard(string name, int damage, string element, string cardType, string username)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
@@ -68,14 +83,14 @@ namespace MonsterTradingCards_Granig.DataLayer
                     ownerId = Convert.ToInt32(result);
                 }
 
-                // Fügt die Karte zur Datenbank hinzu
+                // Karte in die Datenbank einfügen
                 var insertQuery = "INSERT INTO cards (name, damage, element_type, card_type, owner_id) VALUES (@name, @damage, @elementType, @cardType, @ownerId)";
 
                 using (var cmd = new NpgsqlCommand(insertQuery, conn))
                 {
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@damage", damage);
-                    cmd.Parameters.AddWithValue("@elementType", elementType);
+                    cmd.Parameters.AddWithValue("@elementType", element); // ✅ Kein Enum mehr, direkt als String speichern
                     cmd.Parameters.AddWithValue("@cardType", cardType);
                     cmd.Parameters.AddWithValue("@ownerId", ownerId);
 

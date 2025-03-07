@@ -1,5 +1,6 @@
 ﻿using MonsterTradingCards_Granig.RoutingLayer;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -13,18 +14,18 @@ namespace MonsterTradingCards_Granig.PresentationLayer
 
         public Server()
         {
-            _listener = new TcpListener(IPAddress.Any, 8081); // Server auf Port 8081 starten
+            _listener = new TcpListener(IPAddress.Any, 10001); // Server auf Port 10001 starten
         }
 
         public void Start()
         {
             _listener.Start();
-            Console.WriteLine("Server started, listening on port 8081...");
+            Console.WriteLine("✅ Server started, listening on port 10001...");
 
             while (true)
             {
                 TcpClient client = _listener.AcceptTcpClient();
-                Task.Run(() => HandleClient(client)); // Startet einen neuen Thread für jeden Client
+                Task.Run(() => HandleClient(client)); // Startet neuen Thread für jeden Client
             }
         }
 
@@ -35,34 +36,45 @@ namespace MonsterTradingCards_Granig.PresentationLayer
                 using (NetworkStream stream = client.GetStream())
                 {
                     byte[] buffer = new byte[client.ReceiveBufferSize];
-                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                    int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                     string request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-                    Console.WriteLine($"Received: \n{request}");
+                    Console.WriteLine($"📩 Received Request: \n{request}");
 
-
-                    // Request zerlegen
+                    // HTTP Request zerlegen
                     string[] lines = request.Split("\r\n");
-                    string firstLine = lines[0]; // z.B. "POST /users HTTP/1.1"
-                    string[] parts = firstLine.Split(' ');
-
-                    if (parts.Length < 3)
+                    if (lines.Length == 0)
                     {
-                        // Falls die Anfrage nicht korrekt ist
                         SendResponse(stream, "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\n\r\nInvalid request");
                         return;
                     }
 
+                    string firstLine = lines[0]; // z.B. "POST /users HTTP/1.1"
+                    string[] parts = firstLine.Split(' ');
+
+                    if (parts.Length < 2)
+                    {
+                        SendResponse(stream, "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\n\r\nInvalid request format");
+                        return;
+                    }
+
                     string method = parts[0]; // "POST"
-                    string path = parts[1].Trim(); // Entfernt %0A oder Leerzeichen
+                    string path = parts[1].Trim(); // Entfernt Leerzeichen oder %0A
 
-
-                    // Den Body der Anfrage extrahieren
-                    string body = lines.Length > 1 ? lines[lines.Length - 1] : "";
+                    // Header & Body extrahieren
+                    Dictionary<string, string> headers = ExtractHeaders(lines);
+                    string body = ExtractRequestBody(lines);
 
                     // Anfrage an den Router weiterleiten
                     Router router = new Router();
-                    string response = await router.HandleRequest(method, path, body);
+                    string response = await router.HandleRequest(method, path, body, headers);
+
+                    // Falls die Antwort leer ist, sendet der Server eine 500er-Fehlermeldung
+                    if (string.IsNullOrEmpty(response))
+                    {
+                        Console.WriteLine("⚠️ Fehler: Keine Antwort vom Router! Sende 500-Fehler.");
+                        response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\n\r\nServer Error: No response generated";
+                    }
 
                     // Antwort an den Client senden
                     SendResponse(stream, response);
@@ -70,20 +82,61 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error handling client: {ex.Message}");
+                Console.WriteLine($"❌ Error handling client: {ex.Message}");
             }
             finally
             {
                 client.Close(); // Verbindung nach der Verarbeitung schließen
             }
-
         }
-        //Method to send HTTP responses
+
+        /// <summary>
+        /// Extrahiert den JSON-Body aus einer HTTP-Anfrage.
+        /// </summary>
+        private static string ExtractRequestBody(string[] requestLines)
+        {
+            int jsonStartIndex = Array.FindIndex(requestLines, line => line.StartsWith("{"));
+            if (jsonStartIndex != -1)
+            {
+                return string.Join("\n", requestLines[jsonStartIndex..]);
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// Extrahiert die Header aus einer HTTP-Anfrage.
+        /// </summary>
+        private static Dictionary<string, string> ExtractHeaders(string[] requestLines)
+        {
+            Dictionary<string, string> headers = new();
+            foreach (string line in requestLines)
+            {
+                if (line.Contains(": "))
+                {
+                    var parts = line.Split(": ", 2);
+                    headers[parts[0]] = parts[1];
+                }
+            }
+            return headers;
+        }
+
+        /// <summary>
+        /// Sendet die HTTP-Antwort zurück an den Client.
+        /// </summary>
         private static void SendResponse(NetworkStream stream, string response)
         {
             byte[] responseData = Encoding.UTF8.GetBytes(response);
             stream.Write(responseData, 0, responseData.Length);
             stream.Flush();
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            Server server = new Server();
+            server.Start();
         }
     }
 }

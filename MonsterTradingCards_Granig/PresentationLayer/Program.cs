@@ -1,20 +1,7 @@
-﻿using MonsterTradingCards_Granig.DataLayer;
-
-namespace MonsterTradingCards_Granig.PresentationLayer
+﻿class Program
 {
-
-
-    public class Program
+    static async Task Main()
     {
         
-        public static async Task/*void*/ Main(string[] args)
-        {
-            DBConn.Connection();
-
-            var server = new Server();
-            server.Start();
-        }
-
     }
-
 }

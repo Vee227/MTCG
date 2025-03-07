@@ -1,70 +1,75 @@
 ﻿using MonsterTradingCards_Granig;
 using System.Text.Json;
 using MonsterTradingCards_Granig.BusinessLayer.Models;
-
+using MonsterTradingCards_Granig.DataLayer;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
 
 namespace MonsterTradingCards_Granig.PresentationLayer
 {
-    // Diese Klasse verarbeitet die eingehenden Anfragen und gibt entsprechende Antworten zurück
-    public class RequestHandler()
+    public class RequestHandler
     {
         private readonly List<User> users = new();
-        
-        public string HandleRequest(string request, string httpMethod, string? requestBody)
+        private readonly CardRepository cardRepository = new CardRepository();
+
+        public async Task<string> HandleRequest(string httpMethod, string request, string? requestBody, Dictionary<string, string> headers)
         {
             Console.WriteLine("DEBUG: Eingehende Anfrage");
             Console.WriteLine($"Methode: {httpMethod}");
             Console.WriteLine($"Request: {request}");
             Console.WriteLine($"Raw Body: {requestBody}");
+
+            if (httpMethod == "POST" && request == "/login")
             {
-                if (httpMethod == "POST" && request == "/login")
-                { 
-                    return HandleLogin(requestBody);
-                }
-
-                if (httpMethod == "POST" && request == "/register")
-                {
-                    return HandleRegister(requestBody);
-                }
-
-                return "Unknown request.";
+                return HandleLogin(requestBody);
             }
+            if (httpMethod == "POST" && request == "/register")
+            {
+                return HandleRegister(requestBody);
+            }
+            else if (httpMethod == "GET" && request == "/cards")
+            {
+                return await GetUserCards(headers);
+            }
+            else if (httpMethod == "POST" && request == "/cards")
+            {
+                return await AddCard(requestBody, headers);
+            }
+
+            return "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Route not found\"}";
         }
 
-        //Methode, um eine Registrierung zu verwalten
+        // Methode zur Registrierung
         private string HandleRegister(string? jsonBody)
         {
             if (string.IsNullOrWhiteSpace(jsonBody))
             {
-                return "Error: No data provided.";
+                return "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n\r\n{\"message\": \"No data provided\"}";
             }
 
             var newUser = JsonSerializer.Deserialize<User>(jsonBody);
             if (newUser == null || string.IsNullOrWhiteSpace(newUser.Username) || string.IsNullOrWhiteSpace(newUser.Password))
             {
-                return "Error: Invalid user data.";
+                return "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Invalid user data\"}";
             }
 
-            for (int i = 0; i < users.Count; i++)
+            if (users.Any(u => u.Username == newUser.Username))
             {
-                if (users[i].Username == newUser.Username)
-                {
-                    return "Error: Username already exists.";
-                }
+                return "HTTP/1.1 409 Conflict\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Username already exists\"}";
             }
-
 
             users.Add(newUser);
-            return $"User '{newUser.Username}' registered successfully.";
+            return "HTTP/1.1 201 Created\r\nContent-Type: application/json\r\n\r\n{\"message\": \"User registered successfully\"}";
         }
 
-
-        // Methode, um das Login zu verwalten
+        // Methode zum Login
         private string HandleLogin(string? jsonBody)
         {
             if (string.IsNullOrWhiteSpace(jsonBody))
             {
-                return "Error: No data provided.";
+                return "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n\r\n{\"message\": \"No data provided\"}";
             }
 
             var loginUser = JsonSerializer.Deserialize<User>(jsonBody);
@@ -72,16 +77,79 @@ namespace MonsterTradingCards_Granig.PresentationLayer
 
             if (user == null)
             {
-                return "Error: Invalid username or password.";
+                return "HTTP/1.1 401 Unauthorized\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Invalid username or password\"}";
             }
 
-            user.Token = GenerateToken();
-            return $"Login successful. Token: {user.Token}";
+            user.Token = $"{user.Username}-mtcgToken";
+            return $"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{{\"token\": \"{user.Token}\"}}";
         }
 
-        private string GenerateToken()
+        // Methode zum Abrufen von Karten eines Nutzers
+        private async Task<string> GetUserCards(Dictionary<string, string> headers)
         {
-            return Guid.NewGuid().ToString();
+            if (!headers.ContainsKey("Authorization"))
+            {
+                return "HTTP/1.1 401 Unauthorized\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Missing Authorization Header\"}";
+            }
+
+            string token = headers["Authorization"];
+            string username = ExtractUsernameFromToken(token);
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return "HTTP/1.1 403 Forbidden\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Invalid token\"}";
+            }
+
+            var cards = await cardRepository.GetCardsByUser(username);
+            string jsonResponse = JsonSerializer.Serialize(cards);
+
+            return $"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{jsonResponse}";
+        }
+
+        // Methode zum Hinzufügen einer Karte
+        private async Task<string> AddCard(string? body, Dictionary<string, string> headers)
+        {
+            if (!headers.ContainsKey("Authorization"))
+            {
+                return "HTTP/1.1 401 Unauthorized\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Missing Authorization Header\"}";
+            }
+
+            string token = headers["Authorization"];
+            string username = ExtractUsernameFromToken(token);
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return "HTTP/1.1 403 Forbidden\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Invalid token\"}";
+            }
+
+            if (string.IsNullOrWhiteSpace(body))
+            {
+                return "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Request body is empty\"}";
+            }
+
+            var cardData = JsonSerializer.Deserialize<Dictionary<string, object>>(body);
+            if (!cardData.ContainsKey("Name") || !cardData.ContainsKey("Damage") || !cardData.ContainsKey("ElementType") || !cardData.ContainsKey("CardType"))
+            {
+                return "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Invalid request format\"}";
+            }
+
+            bool success = await cardRepository.AddCard(
+                cardData["Name"].ToString(),
+                Convert.ToInt32(cardData["Damage"]),
+                Convert.ToInt32(cardData["ElementType"]),  // ✅ FIXED: Direkt als `int`
+                cardData["CardType"].ToString(),
+                username
+            );
+
+            return success
+                ? "HTTP/1.1 201 Created\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Card added successfully\"}"
+                : "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Failed to add card\"}";
+        }
+
+        // Extrahiert den Nutzernamen aus dem Token
+        private string ExtractUsernameFromToken(string token)
+        {
+            return token.EndsWith("-mtcgToken") ? token.Replace("-mtcgToken", "") : null;
         }
     }
 }
