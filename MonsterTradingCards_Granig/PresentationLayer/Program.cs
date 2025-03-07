@@ -1,13 +1,20 @@
-﻿using MonsterTradingCards_Granig.PresentationLayer;
-namespace InterfVSAbstVCompDemo.PresentationLayer;
+﻿using MonsterTradingCards_Granig.DataLayer;
 
-public class Program
+namespace MonsterTradingCards_Granig.PresentationLayer
 {
-    public static void Main(string[] args)
+
+
+    public class Program
     {
         
-        // Startet den TCP-Server, um auf Verbindungen zu lauschen.
-        var server = new Server();
-        server.Start();
+        public static async Task/*void*/ Main(string[] args)
+        {
+            DBConn.Connection();
+
+            var server = new Server();
+            server.Start();
+        }
+
     }
+
 }

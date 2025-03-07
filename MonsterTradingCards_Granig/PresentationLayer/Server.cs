@@ -1,56 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
+﻿using MonsterTradingCards_Granig.RoutingLayer;
+using System;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MonsterTradingCards_Granig.PresentationLayer
 {
-    // Diese Klasse stellt den TCP-Server dar, der auf Anfragen wartet
     public class Server
     {
-        private readonly RequestHandler _requestHandler;
+        private readonly TcpListener _listener;
 
         public Server()
         {
-            _requestHandler = new RequestHandler();
+            _listener = new TcpListener(IPAddress.Any, 8081); // Server auf Port 8081 starten
         }
 
         public void Start()
         {
-            // Starte den TCP-Listener auf Port 8080, der eingehende Verbindungen akzeptiert
-            TcpListener listener = new TcpListener(IPAddress.Any, 8080);
-            listener.Start();
-            Console.WriteLine("Server started, listening on port 8080...");
+            _listener.Start();
+            Console.WriteLine("Server started, listening on port 8081...");
 
             while (true)
             {
-                // Akzeptiere eingehende TCP-Verbindungen
-                using TcpClient client = listener.AcceptTcpClient();
-                using NetworkStream? stream = client.GetStream();
-
-                // Erstellt einen Puffer (ein Array von Bytes), um die eingehenden Daten zu speichern.
-                // Die Größe des Puffers wird basierend auf der maximalen Empfangsgröße des Clients festgelegt.
-                byte[] buffer = new byte[client.ReceiveBufferSize];
-                int bytesRead = stream.Read(buffer, 0, buffer.Length);
-
-                // Parse die HTTP-Anfrage aus dem eingehenden TCP-Datenstrom
-                string request = Encoding.UTF8.GetString(buffer, 0, bytesRead); //Konvertieren der bytes aus buffer in string
-                string[] requestLines = request.Split("\r\n");
-                string httpMethod = requestLines[0].Split(' ')[0]; // Erhalte die HTTP-Methode (GET, POST, DELETE)
-                string requestUrl = requestLines[0].Split(' ')[1]; // Erhalte die URL der Anfrage
-
-                // Parse Body for POST requests
-                string jsonBody = httpMethod == "POST" ? request.Split("\r\n\r\n")[1] : null;
-
-                string responseString = _requestHandler.HandleRequest(requestUrl, httpMethod, jsonBody);
-
-                // Erstelle eine HTTP-Antwort und sende diese zurück
-                byte[] responseBuffer = Encoding.UTF8.GetBytes($"HTTP/1.1 200 OK\r\nContent-Length: {responseString.Length}\r\n\r\n{responseString}");
-                stream.Write(responseBuffer, 0, responseBuffer.Length); // Startet bei der Position 0 des Buffers und sendet die volle Länge des Buffers.
+                TcpClient client = _listener.AcceptTcpClient();
+                Task.Run(() => HandleClient(client)); // Startet einen neuen Thread für jeden Client
             }
+        }
+
+        private static async Task HandleClient(TcpClient client)
+        {
+            try
+            {
+                using (NetworkStream stream = client.GetStream())
+                {
+                    byte[] buffer = new byte[client.ReceiveBufferSize];
+                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                    string request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+                    Console.WriteLine($"Received: \n{request}");
+
+
+                    // Request zerlegen
+                    string[] lines = request.Split("\r\n");
+                    string firstLine = lines[0]; // z.B. "POST /users HTTP/1.1"
+                    string[] parts = firstLine.Split(' ');
+
+                    if (parts.Length < 3)
+                    {
+                        // Falls die Anfrage nicht korrekt ist
+                        SendResponse(stream, "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\n\r\nInvalid request");
+                        return;
+                    }
+
+                    string method = parts[0]; // "POST"
+                    string path = parts[1].Trim(); // Entfernt %0A oder Leerzeichen
+
+
+                    // Den Body der Anfrage extrahieren
+                    string body = lines.Length > 1 ? lines[lines.Length - 1] : "";
+
+                    // Anfrage an den Router weiterleiten
+                    Router router = new Router();
+                    string response = await router.HandleRequest(method, path, body);
+
+                    // Antwort an den Client senden
+                    SendResponse(stream, response);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error handling client: {ex.Message}");
+            }
+            finally
+            {
+                client.Close(); // Verbindung nach der Verarbeitung schließen
+            }
+
+        }
+        //Method to send HTTP responses
+        private static void SendResponse(NetworkStream stream, string response)
+        {
+            byte[] responseData = Encoding.UTF8.GetBytes(response);
+            stream.Write(responseData, 0, responseData.Length);
+            stream.Flush();
         }
     }
 }

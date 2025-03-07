@@ -3,11 +3,16 @@ C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\Mon
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.runtimeconfig.json
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.dll
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\MonsterTradingCards_Granig.pdb
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\bin\Debug\net8.0\Npgsql.dll
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.csproj.AssemblyReference.cache
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.AssemblyInfoInputs.cache
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.AssemblyInfo.cs
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.csproj.CoreCompileInputs.cache
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.sourcelink.json
+C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterT.7BEA81C8.Up2Date
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.dll
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\refint\MonsterTradingCards_Granig.dll
 C:\Users\grani\Desktop\FHTechnikum\Semester3\SWEN\MonsterTradingCards_Granig\MonsterTradingCards_Granig\obj\Debug\net8.0\MonsterTradingCards_Granig.pdb

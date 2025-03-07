@@ -12,6 +12,10 @@ namespace MonsterTradingCards_Granig.PresentationLayer
         
         public string HandleRequest(string request, string httpMethod, string? requestBody)
         {
+            Console.WriteLine("DEBUG: Eingehende Anfrage");
+            Console.WriteLine($"Methode: {httpMethod}");
+            Console.WriteLine($"Request: {request}");
+            Console.WriteLine($"Raw Body: {requestBody}");
             {
                 if (httpMethod == "POST" && request == "/login")
                 { 
