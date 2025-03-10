@@ -17,17 +17,22 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             _listener = new TcpListener(IPAddress.Any, 10001);
         }
 
-        public void Start()
+     
+        public async Task Start()
         {
             _listener.Start();
             Console.WriteLine("Server started, listening on port 10001...");
 
             while (true)
             {
-                TcpClient client = _listener.AcceptTcpClient();
-                Task.Run(() => HandleClient(client));
+                TcpClient client = await _listener.AcceptTcpClientAsync();
+                //Task.Run(async () => await HandleClient(client));
+                _ = HandleClient(client);
+
+
             }
         }
+
 
         private static async Task HandleClient(TcpClient client)
         {
@@ -117,15 +122,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             byte[] responseData = Encoding.UTF8.GetBytes(response);
             stream.Write(responseData, 0, responseData.Length);
             stream.Flush();
-        }
-    }
-
-    class Program
-    {
-        static void Main()
-        {
-            Server server = new Server();
-            server.Start();
         }
     }
 }

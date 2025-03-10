@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Npgsql;
-using MonsterTradingCards_Granig.BusinessLayer.Models; 
 
 namespace MonsterTradingCards_Granig.DataLayer
 {
-    public class CardRepository
+    public class StackRepository
     {
         
     }
