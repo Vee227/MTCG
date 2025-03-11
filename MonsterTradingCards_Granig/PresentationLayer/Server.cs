@@ -26,7 +26,6 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             while (true)
             {
                 TcpClient client = await _listener.AcceptTcpClientAsync();
-                //Task.Run(async () => await HandleClient(client));
                 _ = HandleClient(client);
 
 
@@ -54,8 +53,12 @@ namespace MonsterTradingCards_Granig.PresentationLayer
                         return;
                     }
 
-                    string firstLine = lines[0]; 
-                    string[] parts = firstLine.Split(' ');
+                    string firstLine = lines[0];
+                    string[] parts = firstLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                    Console.WriteLine($"FirstLine: [{firstLine}]");
+                    Console.WriteLine($"Parts[1] before Trim: [{parts[1]}]");
+
+
 
                     if (parts.Length < 2)
                     {
@@ -68,9 +71,11 @@ namespace MonsterTradingCards_Granig.PresentationLayer
 
                   
                     Dictionary<string, string> headers = ExtractHeaders(lines);
-                    string body = ExtractRequestBody(lines);
+                    string body = ExtractRequestBody(request);
+                    Console.WriteLine($"Raw Body zum testen: {body}");
 
-                
+
+
                     Router router = new Router();
                     string response = await router.HandleRequest(method, path, body, headers);
 
@@ -93,24 +98,16 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             }
         }
 
-        /*private static string ExtractRequestBody(string[] requestLines)
+        private static string ExtractRequestBody(string request)
         {
-            int jsonStartIndex = Array.FindIndex(requestLines, line => line.StartsWith("{"));
-            if (jsonStartIndex != -1)
+            int index = request.IndexOf("\r\n\r\n");
+            if (index != -1 && index + 4 < request.Length)
             {
-                return string.Join("\n", requestLines[jsonStartIndex..]);
-            }
-            return "";
-        }*/
-        private static string ExtractRequestBody(string[] requestLines)
-        {
-            int emptyLineIndex = Array.IndexOf(requestLines, ""); // Die erste Leerzeile im HTTP-Request finden
-            if (emptyLineIndex != -1 && emptyLineIndex + 1 < requestLines.Length)
-            {
-                return string.Join("\n", requestLines[(emptyLineIndex + 1)..]); // Alles nach der Leerzeile ist der Body
+                return request.Substring(index + 4);
             }
             return "";
         }
+
 
 
         private static Dictionary<string, string> ExtractHeaders(string[] requestLines)

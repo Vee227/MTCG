@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonsterTradingCards_Granig")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4519efb630ed2fe45331b0b050faf38878f207cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35e2b827a2caa60499fd5126c8144b08871ca797")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonsterTradingCards_Granig")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonsterTradingCards_Granig")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

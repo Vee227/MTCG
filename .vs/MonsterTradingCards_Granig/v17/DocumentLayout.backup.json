@@ -3,28 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\routinglayer\\router.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\routinglayer\\router.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\datalayer\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\datalayer\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\datalayer\\cardrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\datalayer\\cardrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\businesslayer\\models\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\businesslayer\\models\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{04B21913-8CDB-45AA-8113-4A1D2E5070A1}|MonsterTradingCards_Granig.Tests\\MonsterTradingCards_Granig.Tests.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04B21913-8CDB-45AA-8113-4A1D2E5070A1}|MonsterTradingCards_Granig.Tests\\MonsterTradingCards_Granig.Tests.csproj|solutionrelative:monstertradingcards_granig.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\presentationlayer\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\presentationlayer\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\datalayer\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\datalayer\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\monstertradingcards_granig.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\monstertradingcards_granig.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\datalayer\\dbconn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\datalayer\\dbconn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\datalayer\\deckrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\datalayer\\deckrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\datalayer\\cardrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\datalayer\\cardrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\routinglayer\\router.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\routinglayer\\router.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\presentationlayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|c:\\users\\grani\\desktop\\fhtechnikum\\semester3\\swen\\monstertradingcards_granig\\monstertradingcards_granig\\businesslayer\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{891A8DCD-F262-47C1-8499-BFC66791FE2D}|MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj|solutionrelative:monstertradingcards_granig\\businesslayer\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,85 +50,133 @@
       "DocumentGroups": [
         {
           "DockedWidth": 187,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Server.cs",
-              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
-              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
-              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
-              "RelativeToolTip": "MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAswHEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig.Tests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "MonsterTradingCards_Granig.Tests\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig.Tests\\UnitTest1.cs",
+              "RelativeToolTip": "MonsterTradingCards_Granig.Tests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T00:15:06.006Z",
+              "WhenOpened": "2025-03-11T08:01:27.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MonsterTradingCards_Granig",
+              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj",
+              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj",
+              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj",
+              "RelativeToolTip": "MonsterTradingCards_Granig\\MonsterTradingCards_Granig.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-11T08:01:06.914Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
-              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
-              "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAqwKwAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T23:47:25.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "DBConn.cs",
               "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\DBConn.cs",
               "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\DataLayer\\DBConn.cs",
               "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\DBConn.cs",
               "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\DBConn.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T23:45:30.416Z",
+              "WhenOpened": "2025-03-11T07:55:02.538Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "DeckRepository.cs",
+              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\DeckRepository.cs",
+              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\DataLayer\\DeckRepository.cs",
+              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\DeckRepository.cs",
+              "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\DeckRepository.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAswHAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T07:27:40.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "CardRepository.cs",
               "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\CardRepository.cs",
               "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\DataLayer\\CardRepository.cs",
               "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\CardRepository.cs",
               "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\CardRepository.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAswDwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAAAJwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T23:36:07.328Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T07:26:07.377Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
+              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
+              "RelativeToolTip": "MonsterTradingCards_Granig\\DataLayer\\UserRepository.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAYwEsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T06:46:57.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\BusinessLayer\\Models\\User.cs",
+              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\BusinessLayer\\Models\\User.cs",
+              "RelativeToolTip": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T06:46:27.922Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Router.cs",
               "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\RoutingLayer\\Router.cs",
               "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\RoutingLayer\\Router.cs",
               "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\RoutingLayer\\Router.cs",
               "RelativeToolTip": "MonsterTradingCards_Granig\\RoutingLayer\\Router.cs",
-              "ViewState": "AgIAAOcAAAAAAAAAAAAswAABAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T23:33:23.621Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T06:12:47.638Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Card.cs",
-              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\BusinessLayer\\Models\\Card.cs",
-              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\Card.cs",
-              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\BusinessLayer\\Models\\Card.cs",
-              "RelativeToolTip": "MonsterTradingCards_Granig\\BusinessLayer\\Models\\Card.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwA8AAAAOAAAAAAAAAA==",
+              "Title": "Server.cs",
+              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
+              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
+              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
+              "RelativeToolTip": "MonsterTradingCards_Granig\\PresentationLayer\\Server.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAcwIYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T22:33:45.076Z",
+              "WhenOpened": "2025-03-11T06:12:18.653Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\PresentationLayer\\Program.cs",
+              "RelativeDocumentMoniker": "MonsterTradingCards_Granig\\PresentationLayer\\Program.cs",
+              "ToolTip": "C:\\Users\\grani\\Desktop\\FHTechnikum\\Semester3\\SWEN\\MonsterTradingCards_Granig\\MonsterTradingCards_Granig\\PresentationLayer\\Program.cs",
+              "RelativeToolTip": "MonsterTradingCards_Granig\\PresentationLayer\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T06:12:16.659Z"
             }
           ]
         },

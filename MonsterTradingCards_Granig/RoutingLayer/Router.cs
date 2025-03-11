@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using MonsterTradingCards_Granig.BusinessLayer.Models;
 using MonsterTradingCards_Granig.DataLayer;
+using Npgsql;
 
 namespace MonsterTradingCards_Granig.RoutingLayer
 {
@@ -15,8 +17,9 @@ namespace MonsterTradingCards_Granig.RoutingLayer
         {
             Console.WriteLine($"DEBUG: Methode={method}, Pfad={path}, Body={body}");
 
+          
             path = path.Trim().Replace("\n", "").Replace("\r", "").Replace("%0A", "");
-
+            
             Console.WriteLine("DEBUG: Eingehende Anfrage");
             Console.WriteLine($"Methode: {method}");
             Console.WriteLine($"Request: {path}");
@@ -48,9 +51,25 @@ namespace MonsterTradingCards_Granig.RoutingLayer
             }
             else if (method == "POST" && path == "/packages")
             {
-                Console.WriteLine($"DEBUG: Eingehende Anfrage für /packages, Body={body}");
                 return await CreatePackage(body, headers);
             }
+            else if (method == "POST" && path == "/transactions/packages")
+            {
+                return await BuyPackage(headers);
+            }
+            else if (method == "GET" && path == "/deck")
+            {
+                return await GetDeck(headers);
+            }
+            else if (method == "PUT" && path == "/deck")
+            {
+                return await SetDeck(headers, body);
+            }
+            else if (method == "GET" && path == "/stack")
+            {
+                return await GetUserStack(headers);
+            }
+            
 
 
 
@@ -227,45 +246,134 @@ namespace MonsterTradingCards_Granig.RoutingLayer
 
 
         //****************************Create a Package**********************************
-        private async Task<string> CreatePackage(string body, Dictionary<string, string> headers)
+        
+        public async Task<string> CreatePackage(string body, Dictionary<string, string> headers)
         {
             try
             {
-                if (!headers.TryGetValue("Authorization", out var token) || token != "Bearer admin-mtcgToken")
+                if (!headers.ContainsKey("Authorization") || headers["Authorization"] != "Bearer admin-mtcgToken")
                 {
-                    return "HTTP/1.1 403 Forbidden\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Only admin can create packages\"}";
+                    return "HTTP/1.1 403 Forbidden\r\n\r\n{\"message\": \"Only admins can create packages\"}";
                 }
 
                 var cards = JsonSerializer.Deserialize<List<Card>>(body);
+
                 if (cards == null || cards.Count != 5)
                 {
-                    return "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n\r\n{\"message\": \"A package must contain exactly 5 cards\"}";
+                    return "HTTP/1.1 400 Bad Request\r\n\r\n{\"message\": \"A package must contain exactly 5 cards\"}";
                 }
 
-                var cardRepo = new CardRepository(); // Instanz der Klasse erstellen
+                var cardRepo = new CardRepository();
                 bool success = await cardRepo.CreatePackage(cards);
 
+
                 return success
-                    ? "HTTP/1.1 201 Created\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Package created successfully\"}"
-                    : "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Failed to create package\"}";
+                    ? "HTTP/1.1 201 Created\r\n\r\n{\"message\": \"Package created successfully\"}"
+                    : "HTTP/1.1 500 Internal Server Error\r\n\r\n{\"message\": \"Failed to create package\"}";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"ERROR: {ex.Message}");
-                return "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/json\r\n\r\n{\"message\": \"An error occurred\"}";
+                Console.WriteLine($"FEHLER: {ex.Message}");
+                return "HTTP/1.1 500 Internal Server Error\r\n\r\n{\"message\": \"An error occurred\"}";
             }
         }
 
 
-        /*private string? ExtractUsernameFromToken(string token)
+        //****************************User Buys Package**********************************
+        private async Task<string> BuyPackage(Dictionary<string, string> headers)
         {
-            if (!token.EndsWith("-mtcgToken"))
-                return null;
+            if (!headers.ContainsKey("Authorization"))
+            {
+                return "HTTP/1.1 401 Unauthorized\r\n\r\n{\"message\": \"Authorization header missing\"}";
+            }
 
-            return token.Replace("-mtcgToken", "");
-        }*/
+            string token = headers["Authorization"].Replace("Bearer ", "").Trim();
+            string username = token.Replace("-mtcgToken", "");
+
+            var cardRepo = new CardRepository();
+            bool success = await cardRepo.BuyPackage(username);
+
+            return success
+                ? "HTTP/1.1 201 Created\r\n\r\n{\"message\": \"Package successfully purchased\"}"
+                : "HTTP/1.1 400 Bad Request\r\n\r\n{\"message\": \"Package purchase failed\"}";
+        }
+
+
+        //****************************Show the deck of a user**********************************
+        private async Task<string> GetDeck(Dictionary<string, string> headers)
+        {
+            if (!headers.ContainsKey("Authorization"))
+                return "HTTP/1.1 401 Unauthorized\r\n\r\n{\"message\": \"Authorization header missing\"}";
+
+            string token = headers["Authorization"].Replace("Bearer ", "").Trim();
+            string username = token.Replace("-mtcgToken", "");
+
+            var deckRepo = new DeckRepository();
+            List<Card> deck = await deckRepo.GetDeck(username);
+
+            if (deck == null || deck.Count == 0)
+                return "HTTP/1.1 200 OK\r\n\r\n{\"message\": \"Deck is empty\"}";
+
+            string jsonDeck = JsonSerializer.Serialize(deck);
+            return $"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{jsonDeck}";
+        }
+
+
+        //****************************User manages their deck**********************************
+        private async Task<string> SetDeck(Dictionary<string, string> headers, string body)
+        {
+            if (!headers.ContainsKey("Authorization"))
+            {
+                return "HTTP/1.1 401 Unauthorized\r\n\r\n{\"message\": \"Authorization header missing\"}";
+            }
+
+            string token = headers["Authorization"].Replace("Bearer ", "").Trim();
+            string username = token.Replace("-mtcgToken", "");
+
+            List<int>? cardIds;
+            try
+            {
+                cardIds = JsonSerializer.Deserialize<List<int>>(body);
+            }
+            catch
+            {
+                return "HTTP/1.1 400 Bad Request\r\n\r\n{\"message\": \"Invalid request body\"}";
+            }
+
+            if (cardIds == null || cardIds.Count != 4)
+            {
+                return "HTTP/1.1 400 Bad Request\r\n\r\n{\"message\": \"Deck must contain exactly 4 cards\"}";
+            }
+
+            var deckRepo = new DeckRepository();
+            bool success = await deckRepo.SetDeck(username, cardIds);
+
+            return success
+                ? "HTTP/1.1 200 OK\r\n\r\n{\"message\": \"Deck updated successfully\"}"
+                : "HTTP/1.1 400 Bad Request\r\n\r\n{\"message\": \"Failed to update deck\"}";
+        }
 
 
 
+        //****************************Show the whole Stack of a User**********************************
+        private async Task<string> GetUserStack(Dictionary<string, string> headers)
+        {
+            if (!headers.ContainsKey("Authorization"))
+                return "HTTP/1.1 401 Unauthorized\r\n\r\n{\"message\": \"Authorization header missing\"}";
+
+            string token = headers["Authorization"].Replace("Bearer ", "").Trim();
+            string username = token.Replace("-mtcgToken", "");
+
+            var stackRepo = new StackRepository();
+            var stack = await stackRepo.GetUserStack(username);
+
+            if (stack == null || stack.Count == 0)
+                return "HTTP/1.1 200 OK\r\n\r\n{\"message\": \"User stack is empty\"}";
+
+            string jsonStack = JsonSerializer.Serialize(stack);
+            return $"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{jsonStack}";
+        }
+
+       
     }
 }
