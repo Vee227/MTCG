@@ -7,13 +7,12 @@ namespace MonsterTradingCards_Granig.DataLayer
 {
     public class UserRepository
     {
-        private const string ConnectionString = "Host=localhost;Port=5432;Username=admin;Password=supersecure;Database=postgres";
+        //private const string ConnectionString = "Host=localhost;Port=5432;Username=admin;Password=supersecure;Database=postgres";
 
         //****************************Register User**********************************
         public async Task<bool> RegisterUser(string username, string password, string name = "", string bio = "", string image = "")
         {
-            await using var conn = new NpgsqlConnection(ConnectionString);
-            await conn.OpenAsync();
+            await using var conn = await DBConn.GetConnection();
 
             await using var checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM users WHERE username = @username", conn);
             checkCmd.Parameters.AddWithValue("@username", username);
@@ -45,8 +44,7 @@ namespace MonsterTradingCards_Granig.DataLayer
         {
             List<Dictionary<string, object>> users = new();
 
-            await using var conn = new NpgsqlConnection(ConnectionString);
-            await conn.OpenAsync();
+            await using var conn = await DBConn.GetConnection();
 
             await using var cmd = new NpgsqlCommand("SELECT id, username, coins, elo, games_played, bio, image, name FROM users", conn);
             await using var reader = await cmd.ExecuteReaderAsync();
@@ -80,8 +78,7 @@ namespace MonsterTradingCards_Granig.DataLayer
                 return false;
             }
 
-            await using var conn = new NpgsqlConnection(ConnectionString);
-            await conn.OpenAsync();
+            await using var conn = await DBConn.GetConnection();
 
             var query = new StringBuilder("UPDATE users SET ");
             var parameters = new List<NpgsqlParameter>();
@@ -128,8 +125,7 @@ namespace MonsterTradingCards_Granig.DataLayer
         //****************************Delete User (nur als Admin)**********************************
         public async Task<bool> DeleteUser(string username)
         {
-            await using var conn = new NpgsqlConnection(ConnectionString);
-            await conn.OpenAsync();
+            await using var conn = await DBConn.GetConnection();
 
             await using var cmd = new NpgsqlCommand("DELETE FROM users WHERE username = @username", conn);
             cmd.Parameters.AddWithValue("@username", username);
@@ -143,8 +139,7 @@ namespace MonsterTradingCards_Granig.DataLayer
         //****************************Eigene Profildaten abrufen**********************************
         public async Task<Dictionary<string, object>?> GetUser(string username)
         {
-            await using var conn = new NpgsqlConnection(ConnectionString);
-            await conn.OpenAsync();
+            await using var conn = await DBConn.GetConnection();
 
             var query = "SELECT username, coins, elo, games_played, bio, image, name FROM users WHERE username = @username";
             await using var cmd = new NpgsqlCommand(query, conn);
@@ -174,28 +169,25 @@ namespace MonsterTradingCards_Granig.DataLayer
         //****************************Login User**********************************
         public async Task<string?> LoginUser(string username, string password)
         {
-            using (var conn = new NpgsqlConnection(ConnectionString))
+            await using var conn = await DBConn.GetConnection();
+            
+            var query = "SELECT password FROM users WHERE username = @username";
+            await using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@username", username);
+
+            await using var reader = await cmd.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
             {
-                await conn.OpenAsync();
-                var query = "SELECT password FROM users WHERE username = @username";
-                using (var cmd = new NpgsqlCommand(query, conn))
+                string storedPassword = reader.GetString(0);
+                if (storedPassword == password)
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    using (var reader = await cmd.ExecuteReaderAsync())
-                    {
-                        if (await reader.ReadAsync())
-                        {
-                            string storedPassword = reader.GetString(0);
-                            if (storedPassword == password) 
-                            {
-                                return $"{username}-mtcgToken"; 
-                            }
-                        }
-                    }
+                    return $"{username}-mtcgToken";
                 }
             }
-            return null; 
+
+            return null;
         }
+
 
     }
 }

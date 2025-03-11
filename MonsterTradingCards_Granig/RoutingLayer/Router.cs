@@ -46,12 +46,18 @@ namespace MonsterTradingCards_Granig.RoutingLayer
             {
                 return await LoginUser(body);
             }
-            
+            else if (method == "POST" && path == "/packages")
+            {
+                Console.WriteLine($"DEBUG: Eingehende Anfrage für /packages, Body={body}");
+                return await CreatePackage(body, headers);
+            }
+
+
 
             return "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\n\r\nRoute not found";
         }
 
-    //--------------------------------------------ALLES ZU USERS---------------------------------------------------------------------------------------------------
+    //--------------------------------------------ALLES ZU USERS---------------------------------------------
     
         //****************************Register User**********************************
         private async Task<string> RegisterUser(string body)
@@ -216,7 +222,41 @@ namespace MonsterTradingCards_Granig.RoutingLayer
             }
         }
 
-       
+
+        //--------------------------------------------ALLES ZU CARDS UND PACKAGES----------------------------------------------
+
+
+        //****************************Create a Package**********************************
+        private async Task<string> CreatePackage(string body, Dictionary<string, string> headers)
+        {
+            try
+            {
+                if (!headers.TryGetValue("Authorization", out var token) || token != "Bearer admin-mtcgToken")
+                {
+                    return "HTTP/1.1 403 Forbidden\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Only admin can create packages\"}";
+                }
+
+                var cards = JsonSerializer.Deserialize<List<Card>>(body);
+                if (cards == null || cards.Count != 5)
+                {
+                    return "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n\r\n{\"message\": \"A package must contain exactly 5 cards\"}";
+                }
+
+                var cardRepo = new CardRepository(); // Instanz der Klasse erstellen
+                bool success = await cardRepo.CreatePackage(cards);
+
+                return success
+                    ? "HTTP/1.1 201 Created\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Package created successfully\"}"
+                    : "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/json\r\n\r\n{\"message\": \"Failed to create package\"}";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+                return "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/json\r\n\r\n{\"message\": \"An error occurred\"}";
+            }
+        }
+
+
         /*private string? ExtractUsernameFromToken(string token)
         {
             if (!token.EndsWith("-mtcgToken"))
@@ -224,7 +264,7 @@ namespace MonsterTradingCards_Granig.RoutingLayer
 
             return token.Replace("-mtcgToken", "");
         }*/
-       
+
 
 
     }

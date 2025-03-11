@@ -93,7 +93,7 @@ namespace MonsterTradingCards_Granig.PresentationLayer
             }
         }
 
-        private static string ExtractRequestBody(string[] requestLines)
+        /*private static string ExtractRequestBody(string[] requestLines)
         {
             int jsonStartIndex = Array.FindIndex(requestLines, line => line.StartsWith("{"));
             if (jsonStartIndex != -1)
@@ -101,7 +101,17 @@ namespace MonsterTradingCards_Granig.PresentationLayer
                 return string.Join("\n", requestLines[jsonStartIndex..]);
             }
             return "";
+        }*/
+        private static string ExtractRequestBody(string[] requestLines)
+        {
+            int emptyLineIndex = Array.IndexOf(requestLines, ""); // Die erste Leerzeile im HTTP-Request finden
+            if (emptyLineIndex != -1 && emptyLineIndex + 1 < requestLines.Length)
+            {
+                return string.Join("\n", requestLines[(emptyLineIndex + 1)..]); // Alles nach der Leerzeile ist der Body
+            }
+            return "";
         }
+
 
         private static Dictionary<string, string> ExtractHeaders(string[] requestLines)
         {
